@@ -1,0 +1,57 @@
+/* styles/themes.css (Contraste Otimizado para Leitura) */
+
+:root {
+    /* --- Cores Base Compartilhadas --- */
+    --cor-acento: #007bff; /* Azul vibrante para botões e destaque */
+    
+    /* Cor do texto secundário (para descrições, etc.) */
+    --texto-secundario-light: #6b7280; 
+    --texto-secundario-dark: #a0a0a0; 
+    
+    /* Sombra discreta para dar profundidade aos cards */
+    --sombra-card-light: rgba(0, 0, 0, 0.05);
+    --sombra-card-dark: rgba(0, 0, 0, 0.3);
+
+    /* Fundo do overlay do Modal (opacidade será aplicada no style.css) */
+    --fundo-backdrop: #000000; 
+}
+
+/* ------------------------------------------------ */
+/* --- MODO CLARO (Padrão e .light-mode) --- */
+/* ------------------------------------------------ */
+body, :root {
+    /* Fundo e texto principal */
+    --fundo-principal: #ffffff; /* Branco Puro */
+    --texto-principal: #1a1a1a; /* Preto Quase Puro */
+    
+    /* Fundos de elementos */
+    --fundo-sidebar: #f7f7f7; /* Cinza claro na sidebar */
+    --fundo-card: #ffffff; /* Fundo do card branco */
+    
+    /* Bordas e separadores */
+    --borda-suave: #e5e7eb;
+    
+    /* Configurações específicas */
+    --texto-secundario: var(--texto-secundario-light);
+    --sombra-card: var(--sombra-card-light);
+}
+
+/* ------------------------------------------------ */
+/* --- MODO ESCURO (.dark-mode) --- */
+/* ------------------------------------------------ */
+body.dark-mode {
+    /* Fundo e texto principal (Contraste Otimizado) */
+    --fundo-principal: #121212; /* Preto Muito Escuro (Melhor Contraste) */
+    --texto-principal: #e0e0e0; /* Branco Levemente Acinzentado (Melhor para leitura noturna) */
+    
+    /* Fundos de elementos */
+    --fundo-sidebar: #1f1f1f; /* Fundo mais escuro para a sidebar */
+    --fundo-card: #1f1f1f; /* Fundo do card escuro */
+    
+    /* Bordas e separadores */
+    --borda-suave: #374151;
+    
+    /* Configurações específicas */
+    --texto-secundario: var(--texto-secundario-dark);
+    --sombra-card: var(--sombra-card-dark);
+}

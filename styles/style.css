@@ -1,0 +1,663 @@
+/* styles/style.css (Conteúdo Completo e Atualizado) */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    /* Fonte moderna e que funciona bem em todos os sistemas */
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    background-color: var(--fundo-principal);
+    color: var(--texto-principal);
+    transition: background-color 0.3s, color 0.3s;
+    line-height: 1.6;
+}
+
+/* --- Layout Principal --- */
+#sidebar {
+    width: 250px;
+    background-color: var(--fundo-sidebar);
+    padding: 20px;
+    border-right: 1px solid var(--borda-suave);
+    flex-shrink: 0;
+    overflow-y: auto; /* Para permitir scroll na sidebar */
+}
+
+#sidebar h2 {
+    margin-bottom: 15px;
+    font-size: 1.2em;
+    font-weight: 600;
+    color: var(--texto-principal);
+}
+
+/* Lista de Coleções */
+#collection-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 15px;
+}
+
+#collection-list li {
+    margin: 5px 0;
+}
+
+.collection-item {
+    display: block;
+    padding: 8px 10px;
+    text-decoration: none;
+    color: var(--texto-secundario);
+    border-radius: 6px;
+    transition: background-color 0.2s, color 0.2s;
+    font-size: 0.95em;
+}
+
+.collection-item:hover {
+    background-color: var(--borda-suave);
+    color: var(--texto-principal);
+}
+
+.active-collection {
+    background-color: var(--cor-acento);
+    color: white !important;
+    font-weight: bold;
+}
+.active-collection:hover {
+    background-color: var(--cor-acento);
+    opacity: 0.9;
+}
+
+/* Linha Divisória e Botão Tema */
+#sidebar hr {
+    border: none;
+    border-top: 1px solid var(--borda-suave);
+    margin: 20px 0;
+}
+
+#toggle-theme {
+    padding: 10px;
+    border: 1px solid var(--borda-suave);
+    background-color: var(--fundo-card);
+    color: var(--texto-principal);
+    cursor: pointer;
+    border-radius: 8px;
+    font-size: 0.9em;
+    font-weight: bold;
+    display: block;
+    width: 100%;
+    transition: background-color 0.2s;
+}
+
+#toggle-theme:hover {
+    background-color: var(--borda-suave);
+}
+
+
+/* --- Área de Conteúdo Principal --- */
+#content-area {
+    flex-grow: 1;
+    padding: 20px 40px;
+    overflow-y: auto;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    gap: 15px;
+}
+
+/* --- Estilo para componentes do Header (Input, Select e Botão) --- */
+#search-input, #sort-select, #toggle-view {
+    padding: 10px 15px;
+    border: 1px solid var(--borda-suave);
+    background-color: var(--fundo-card);
+    color: var(--texto-principal);
+    border-radius: 6px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+#search-input {
+    flex-grow: 1;
+    min-width: 200px;
+}
+
+#sort-select {
+    width: 150px;
+    appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><path fill="var(--texto-principal)" d="M7 10l5 5 5-5z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px top 50%;
+    background-size: 12px;
+}
+
+#toggle-view, #add-link-btn {
+    white-space: nowrap;
+}
+
+#search-input:hover, 
+#sort-select:hover, 
+#toggle-view:hover,
+#add-link-btn:hover {
+    background-color: var(--borda-suave);
+}
+
+/* Estilo para o botão "Adicionar Link" no Header */
+#add-link-btn {
+    padding: 10px 15px;
+    border: 1px solid var(--cor-acento);
+    background-color: var(--cor-acento);
+    color: white;
+    border-radius: 6px;
+    font-size: 1em;
+    cursor: pointer;
+    font-weight: bold;
+    transition: opacity 0.2s;
+}
+
+#add-link-btn:hover {
+    opacity: 0.9;
+    background-color: var(--cor-acento);
+}
+
+/* --- Estilo Base dos Cards (Itens de Visualização) --- */
+.card {
+    /* CORREÇÃO: Aumenta o padding superior e direito para dar espaço aos ícones de ação */
+    padding: 15px;
+    padding-top: 40px; 
+    padding-right: 40px; 
+    
+    border: 1px solid var(--borda-suave);
+    background-color: var(--fundo-card);
+    border-radius: 8px;
+    box-shadow: 0 1px 3px var(--sombra-card);
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+    cursor: pointer;
+}
+.card:hover {
+    box-shadow: 0 4px 8px var(--sombra-card);
+    transform: translateY(-2px);
+}
+
+.card h3 {
+    /* CORREÇÃO: Puxa o título para cima para compensar o padding-top extra */
+    margin-top: -15px; 
+    margin-bottom: 5px;
+    font-size: 1.2em;
+}
+
+.card p {
+    color: var(--texto-secundario);
+    margin-bottom: 10px;
+}
+
+.tags {
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.tags span {
+    display: inline-block;
+    background-color: var(--cor-acento);
+    color: white;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 0.75em;
+    margin-right: 5px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+.tags span:hover {
+    opacity: 0.8;
+}
+
+.reader-mode-btn {
+    background-color: var(--fundo-sidebar);
+    color: var(--texto-principal);
+    border: 1px solid var(--borda-suave);
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-size: 0.9em;
+}
+.reader-mode-btn:hover {
+    background-color: var(--borda-suave);
+}
+
+.card-actions {
+    position: absolute;
+    /* CORREÇÃO: Posiciona os ícones dentro da nova área de padding */
+    top: 10px;
+    right: 10px;
+    display: flex;
+    gap: 5px;
+    opacity: 0.5;
+    z-index: 10; /* Garante que os botões fiquem acima do conteúdo */
+    transition: opacity 0.2s;
+}
+.card:hover .card-actions {
+    opacity: 1;
+}
+
+.card-actions button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--texto-secundario);
+    padding: 5px;
+    font-size: 1em;
+}
+.card-actions .edit-btn:hover {
+    color: var(--cor-acento);
+}
+.card-actions .delete-btn:hover {
+    color: #ef4444; /* Vermelho para exclusão */
+}
+
+
+/* --- Visualização em Grid (Padrão) --- */
+#viewer-container.grid-view {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
+    gap: 20px;
+}
+#viewer-container.grid-view .card h3 {
+    font-size: 1.1em;
+    /* A margem superior já está corrigida na regra .card h3 global */
+    margin-top: -15px; 
+}
+#viewer-container.grid-view .card p {
+    font-size: 0.9em;
+}
+
+
+/* --- Visualização em Lista --- */
+#viewer-container.list-view {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+#viewer-container.list-view .card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* Na visualização em lista, os botões são position: static, então o padding pode ser menor */
+    padding: 15px 20px;
+}
+#viewer-container.list-view .card h3 {
+    flex-shrink: 0;
+    width: 20%;
+    min-width: 150px;
+    margin: 0;
+}
+#viewer-container.list-view .card p {
+    flex-grow: 1; 
+    margin: 0 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; 
+}
+#viewer-container.list-view .tags {
+    flex-shrink: 0;
+    min-width: 150px;
+}
+#viewer-container.list-view .reader-mode-btn {
+    margin: 0;
+    flex-shrink: 0;
+}
+#viewer-container.list-view .card-actions {
+    position: static;
+    opacity: 1;
+    margin-left: 10px;
+}
+
+
+/* --- Modal/Overlay Base (Oculta por padrão) --- */
+.hidden {
+    display: none !important;
+}
+
+/* Modal de Leitura */
+#reader-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#modal-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.8;
+}
+
+#modal-content {
+    background-color: var(--fundo-principal);
+    color: var(--texto-principal);
+    position: relative;
+    z-index: 1001;
+    width: 90%;
+    max-width: 800px;
+    height: 90%;
+    max-height: 90vh;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+#modal-content header {
+    padding: 15px 25px;
+    border-bottom: 1px solid var(--borda-suave);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0;
+}
+
+#close-modal-btn {
+    background: none;
+    border: none;
+    font-size: 1.2em;
+    cursor: pointer;
+    color: var(--texto-principal);
+}
+
+#modal-body {
+    padding: 25px;
+    overflow-y: auto;
+}
+
+/* --- Modal CRUD de Links (CREATE / UPDATE de Link) --- */
+#crud-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2000; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#crud-modal-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.75;
+}
+
+#crud-modal-content {
+    background-color: var(--fundo-principal);
+    color: var(--texto-principal);
+    position: relative;
+    z-index: 2001;
+    width: 90%;
+    max-width: 500px;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+#crud-modal-content header {
+    padding: 0;
+    border-bottom: 1px solid var(--borda-suave);
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#close-crud-modal-btn {
+    background: none;
+    border: none;
+    font-size: 1.2em;
+    cursor: pointer;
+    color: var(--texto-principal);
+}
+
+/* Formulário de Link */
+#link-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+#link-form label {
+    margin-top: 5px;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+#link-form input, #link-form textarea, #link-form select {
+    padding: 10px;
+    border: 1px solid var(--borda-suave);
+    background-color: var(--fundo-card);
+    color: var(--texto-principal);
+    border-radius: 6px;
+    font-size: 1em;
+    resize: vertical;
+}
+#link-form button {
+    margin-top: 15px;
+    padding: 12px;
+    background-color: var(--cor-acento);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: opacity 0.2s;
+}
+#link-form button:hover {
+    opacity: 0.9;
+}
+
+
+/* ------------------------------------------------ */
+/* --- ESTILOS PARA CRUD DE COLEÇÕES --- */
+/* ------------------------------------------------ */
+
+/* Estilo para o botão "Gerenciar Coleções" */
+#manage-collections-btn {
+    padding: 8px 10px;
+    border: 1px solid var(--borda-suave);
+    background-color: var(--fundo-card);
+    color: var(--texto-principal);
+    border-radius: 6px;
+    font-size: 0.9em;
+    cursor: pointer;
+    font-weight: 500;
+    margin-bottom: 15px; 
+    display: block;
+    width: 100%;
+    transition: background-color 0.2s;
+}
+#manage-collections-btn:hover {
+    background-color: var(--borda-suave);
+}
+
+
+/* --- Modal de Gerenciamento de Coleções (C/U/D de Coleção) --- */
+#collection-crud-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3000; /* Acima dos outros modais */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#collection-modal-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.75;
+}
+
+#collection-modal-content {
+    background-color: var(--fundo-principal);
+    color: var(--texto-principal);
+    position: relative;
+    z-index: 3001;
+    width: 90%;
+    max-width: 400px;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+#collection-modal-content header {
+    padding: 0;
+    border-bottom: 1px solid var(--borda-suave);
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#close-collection-modal-btn {
+    background: none;
+    border: none;
+    font-size: 1.2em;
+    cursor: pointer;
+    color: var(--texto-principal);
+}
+
+/* Formulário de Coleção */
+#collection-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+#collection-form label {
+    margin-top: 5px;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+#collection-form input {
+    padding: 10px;
+    border: 1px solid var(--borda-suave);
+    background-color: var(--fundo-card);
+    color: var(--texto-principal);
+    border-radius: 6px;
+    font-size: 1em;
+}
+#collection-form button {
+    margin-top: 10px;
+    padding: 12px;
+    background-color: var(--cor-acento);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: opacity 0.2s;
+}
+#collection-form button:hover {
+    opacity: 0.9;
+}
+
+
+/* Lista de Gerenciamento de Coleções */
+#collection-management-list {
+    list-style: none;
+    padding: 0;
+    max-height: 200px; 
+    overflow-y: auto;
+    border: 1px solid var(--borda-suave);
+    border-radius: 6px;
+    margin-top: 15px;
+}
+#collection-management-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 15px;
+    border-bottom: 1px dashed var(--borda-suave);
+}
+#collection-management-list li:last-child {
+    border-bottom: none;
+}
+
+.collection-actions button {
+    background: none;
+    border: none;
+    color: var(--texto-secundario);
+    cursor: pointer;
+    margin-left: 10px;
+    font-size: 0.9em;
+}
+.collection-actions .edit-collection-btn:hover {
+    color: var(--cor-acento);
+}
+.collection-actions .delete-collection-btn:hover {
+    color: #ef4444;
+}
+.collection-name-display {
+    font-weight: 500;
+}
+.is-default-collection {
+    color: var(--texto-secundario);
+    font-style: italic;
+    font-weight: normal;
+}
+
+/* ------------------------------------------------ */
+/* --- NOVO: Seção de Importação/Exportação na Sidebar --- */
+/* ------------------------------------------------ */
+#data-management {
+    margin-bottom: 20px;
+}
+#data-management h3 {
+    margin-bottom: 10px;
+    font-size: 1em;
+    font-weight: 600;
+    color: var(--texto-principal);
+}
+
+#data-management button {
+    /* Reutiliza o estilo de #manage-collections-btn */
+    padding: 8px 10px;
+    border: 1px solid var(--borda-suave);
+    background-color: var(--fundo-card);
+    color: var(--texto-principal);
+    border-radius: 6px;
+    font-size: 0.9em;
+    cursor: pointer;
+    font-weight: 500;
+    margin-bottom: 8px; /* Espaçamento entre os botões */
+    display: block;
+    width: 100%;
+    transition: background-color 0.2s;
+}
+
+#data-management button:hover {
+    background-color: var(--borda-suave);
+}

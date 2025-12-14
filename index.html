@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Visualizador Web (Inspirado em Raindrop.io)</title>
+    
+    <link rel="stylesheet" href="styles/style.css"> 
+    <link rel="stylesheet" href="styles/themes.css">
+</head>
+
+<body>
+    
+    <aside id="sidebar">
+        <h2>Coleções</h2>
+        
+        <button id="manage-collections-btn" title="Gerenciar Coleções">⚙️ Gerenciar</button>
+        
+        <ul id="collection-list">
+        </ul>
+        
+        <hr> 
+        
+        <div id="data-management">
+            <h3>Dados</h3>
+            <button id="export-btn" title="Exportar Links e Coleções">⬇️ Exportar JSON</button>
+            <input type="file" id="import-file-input" accept=".json" style="display: none;">
+            <button id="import-btn" title="Importar Links e Coleções (Substitui os dados atuais)">⬆️ Importar JSON</button>
+        </div>
+        
+        <hr> 
+        <button id="toggle-theme">Alternar Tema</button>
+    </aside>
+
+    <main id="content-area">
+        <header>
+            <input type="text" id="search-input" placeholder="Pesquisar por títulos, tags ou conteúdo...">
+            
+            <button id="add-link-btn" title="Adicionar Novo Link">➕ Adicionar</button>
+            
+            <select id="sort-select">
+                <option value="date-desc">Mais Recente</option>
+                <option value="date-asc">Mais Antigo</option>
+                <option value="title-asc">Título (A-Z)</option>
+                <option value="title-desc">Título (Z-A)</option>
+            </select>
+            
+            <button id="toggle-view">Modo: Grid (Clique para Lista)</button>
+        </header>
+
+        <section id="viewer-container" class="grid-view">
+        </section>
+    </main>
+
+    <div id="reader-modal" class="hidden">
+        <div id="modal-backdrop"></div>
+        
+        <div id="modal-content">
+            <header>
+                <h2 id="modal-title">Título do Conteúdo</h2>
+                <button id="close-modal-btn">X</button>
+            </header>
+            <div id="modal-body">
+                <p>Esta é a simulação de um conteúdo de artigo. Na implementação real do Web Clipper, você faria uma requisição para buscar o texto limpo da URL salva.</p>
+                <p>O foco principal é garantir que o usuário tenha um ambiente sem distrações, sem anúncios ou barras laterais, para ler o conteúdo salvo.</p>
+                
+                <h3>Detalhes Adicionais</h3>
+                <ul>
+                    <li>URL Salva: <span id="modal-url"></span></li>
+                    <li>Tags: <span id="modal-tags"></span></li>
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+    
+    <div id="crud-modal" class="hidden">
+        <div id="crud-modal-backdrop"></div>
+        <div id="crud-modal-content">
+            <header>
+                <h2 id="crud-modal-title">Adicionar Novo Link</h2>
+                <button id="close-crud-modal-btn">X</button>
+            </header>
+            <form id="link-form">
+                <input type="hidden" id="link-id">
+                
+                <label for="link-title">Título:</label>
+                <input type="text" id="link-title" required>
+
+                <label for="link-url">URL:</label>
+                <input type="url" id="link-url" required>
+
+                <label for="link-description">Descrição (opcional):</label>
+                <textarea id="link-description"></textarea>
+
+                <label for="link-tags">Tags (separadas por vírgula, ex: CSS, Dev):</label>
+                <input type="text" id="link-tags" placeholder="Ex: Frontend, Design, Tutorial">
+
+                <label for="link-collection">Coleção:</label>
+                <select id="link-collection" required>
+                    </select>
+
+                <button type="submit" id="save-link-btn">Salvar Link</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="collection-crud-modal" class="hidden">
+        <div id="collection-modal-backdrop"></div>
+        <div id="collection-modal-content">
+            <header>
+                <h2 id="collection-modal-title">Gerenciar Coleções</h2>
+                <button id="close-collection-modal-btn">X</button>
+            </header>
+            
+            <form id="collection-form">
+                <input type="hidden" id="collection-original-name">
+                <label for="collection-name-input">Nome da Coleção:</label>
+                <input type="text" id="collection-name-input" required placeholder="Ex: Backend, Design">
+                <button type="submit" id="save-collection-btn">Criar Coleção</button>
+            </form>
+
+            <hr style="margin: 20px 0;">
+
+            <h3>Coleções Existentes</h3>
+            <ul id="collection-management-list">
+                </ul>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
