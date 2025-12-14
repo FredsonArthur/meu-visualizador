@@ -7,6 +7,8 @@
     
     <link rel="stylesheet" href="styles/style.css"> 
     <link rel="stylesheet" href="styles/themes.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 
 <body>
@@ -114,9 +116,9 @@
             </header>
             
             <form id="collection-form">
-                <input type="hidden" id="collection-original-name">
-                <label for="collection-name-input">Nome da Coleção:</label>
-                <input type="text" id="collection-name-input" required placeholder="Ex: Backend, Design">
+                <input type="hidden" id="collection-id"> 
+                <label for="collection-name">Nome da Coleção:</label>
+                <input type="text" id="collection-name" required placeholder="Ex: Backend, Design">
                 <button type="submit" id="save-collection-btn">Criar Coleção</button>
             </form>
 

@@ -45,11 +45,11 @@ body.dark-mode {
     --texto-principal: #e0e0e0; /* Branco Levemente Acinzentado (Melhor para leitura noturna) */
     
     /* Fundos de elementos */
-    --fundo-sidebar: #1f1f1f; /* Fundo mais escuro para a sidebar */
-    --fundo-card: #1f1f1f; /* Fundo do card escuro */
+    --fundo-sidebar: #1f1f1f; /* Fundo mais escuro para sidebar */
+    --fundo-card: #282828; /* Fundo do card escuro */
     
     /* Bordas e separadores */
-    --borda-suave: #374151;
+    --borda-suave: #3a3a3a;
     
     /* Configurações específicas */
     --texto-secundario: var(--texto-secundario-dark);

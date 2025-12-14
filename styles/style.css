@@ -20,7 +20,9 @@ body {
     line-height: 1.6;
 }
 
-/* --- Layout Principal --- */
+/* ------------------------------------------------ */
+/* --- Layout Principal e Sidebar --- */
+/* ------------------------------------------------ */
 #sidebar {
     width: 250px;
     background-color: var(--fundo-sidebar);
@@ -37,6 +39,12 @@ body {
     color: var(--texto-principal);
 }
 
+#content-area {
+    flex-grow: 1;
+    padding: 20px 40px;
+    overflow-y: auto;
+}
+
 /* Lista de Coleções */
 #collection-list {
     list-style: none;
@@ -50,62 +58,103 @@ body {
 
 .collection-item {
     display: block;
-    padding: 8px 10px;
+    padding: 8px 12px;
     text-decoration: none;
-    color: var(--texto-secundario);
-    border-radius: 6px;
+    color: var(--texto-principal);
+    border-radius: 4px;
     transition: background-color 0.2s, color 0.2s;
     font-size: 0.95em;
+    font-weight: 500;
 }
 
 .collection-item:hover {
     background-color: var(--borda-suave);
-    color: var(--texto-principal);
 }
 
 .active-collection {
     background-color: var(--cor-acento);
     color: white !important;
-    font-weight: bold;
 }
 .active-collection:hover {
     background-color: var(--cor-acento);
     opacity: 0.9;
 }
 
-/* Linha Divisória e Botão Tema */
-#sidebar hr {
-    border: none;
-    border-top: 1px solid var(--borda-suave);
-    margin: 20px 0;
+
+/* Gerenciamento de Dados e Tema */
+#manage-collections-btn {
+    padding: 8px 12px;
+    background-color: transparent;
+    border: 1px solid var(--borda-suave);
+    color: var(--texto-principal);
+    cursor: pointer;
+    border-radius: 6px;
+    font-size: 0.9em;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    margin-bottom: 15px;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+#manage-collections-btn:hover {
+    background-color: var(--borda-suave);
+}
+
+#data-management {
+    margin-bottom: 20px;
+}
+#data-management h3 {
+    margin-bottom: 10px;
+    font-size: 1em;
+    font-weight: 600;
+    color: var(--texto-principal);
+}
+
+#data-management button {
+    /* Reutiliza o estilo de #manage-collections-btn */
+    padding: 8px 10px;
+    border: 1px solid var(--borda-suave);
+    background-color: transparent;
+    color: var(--texto-principal);
+    cursor: pointer;
+    border-radius: 6px;
+    font-size: 0.9em;
+    font-weight: 500;
+    width: 100%;
+    margin-bottom: 5px;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+#data-management button:hover {
+    background-color: var(--borda-suave);
 }
 
 #toggle-theme {
     padding: 10px;
-    border: 1px solid var(--borda-suave);
-    background-color: var(--fundo-card);
+    background-color: transparent;
+    border: 1px solid var(--texto-principal);
     color: var(--texto-principal);
     cursor: pointer;
     border-radius: 8px;
     font-size: 0.9em;
     font-weight: bold;
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
     width: 100%;
-    transition: background-color 0.2s;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
 }
 
 #toggle-theme:hover {
     background-color: var(--borda-suave);
 }
 
-
-/* --- Área de Conteúdo Principal --- */
-#content-area {
-    flex-grow: 1;
-    padding: 20px 40px;
-    overflow-y: auto;
-}
-
+/* ------------------------------------------------ */
+/* --- Header e Filtros --- */
+/* ------------------------------------------------ */
 header {
     display: flex;
     justify-content: space-between;
@@ -114,7 +163,6 @@ header {
     gap: 15px;
 }
 
-/* --- Estilo para componentes do Header (Input, Select e Botão) --- */
 #search-input, #sort-select, #toggle-view {
     padding: 10px 15px;
     border: 1px solid var(--borda-suave);
@@ -124,213 +172,226 @@ header {
     font-size: 1em;
     cursor: pointer;
     transition: background-color 0.2s, border-color 0.2s;
+    outline: none;
 }
 
 #search-input {
     flex-grow: 1;
-    min-width: 200px;
 }
 
-#sort-select {
-    width: 150px;
-    appearance: none;
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><path fill="var(--texto-principal)" d="M7 10l5 5 5-5z"/></svg>');
-    background-repeat: no-repeat;
-    background-position: right 10px top 50%;
-    background-size: 12px;
+#search-input:focus {
+    border-color: var(--cor-acento);
 }
 
-#toggle-view, #add-link-btn {
-    white-space: nowrap;
-}
-
-#search-input:hover, 
-#sort-select:hover, 
-#toggle-view:hover,
-#add-link-btn:hover {
+#sort-select:hover, #toggle-view:hover {
     background-color: var(--borda-suave);
 }
 
-/* Estilo para o botão "Adicionar Link" no Header */
 #add-link-btn {
     padding: 10px 15px;
-    border: 1px solid var(--cor-acento);
     background-color: var(--cor-acento);
     color: white;
+    border: none;
     border-radius: 6px;
-    font-size: 1em;
     cursor: pointer;
     font-weight: bold;
     transition: opacity 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
-
 #add-link-btn:hover {
     opacity: 0.9;
-    background-color: var(--cor-acento);
 }
 
-/* --- Estilo Base dos Cards (Itens de Visualização) --- */
+/* ------------------------------------------------ */
+/* --- Visualização em Grid (Padrão) --- */
+/* ------------------------------------------------ */
+#viewer-container.grid-view {
+    display: grid;
+    /* Permite 3 colunas, mas ajusta para caber mais ou menos */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
 .card {
-    /* CORREÇÃO: Aumenta o padding superior e direito para dar espaço aos ícones de ação */
-    padding: 15px;
-    padding-top: 40px; 
-    padding-right: 40px; 
-    
-    border: 1px solid var(--borda-suave);
     background-color: var(--fundo-card);
     border-radius: 8px;
-    box-shadow: 0 1px 3px var(--sombra-card);
+    padding: 20px;
+    box-shadow: 0 4px 6px var(--sombra-card);
     transition: transform 0.2s, box-shadow 0.2s;
     position: relative;
-    cursor: pointer;
+    overflow: hidden;
+    cursor: pointer; /* Indica que o card é clicável */
+    display: flex;
+    flex-direction: column;
 }
+
 .card:hover {
-    box-shadow: 0 4px 8px var(--sombra-card);
     transform: translateY(-2px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
 }
 
 .card h3 {
-    /* CORREÇÃO: Puxa o título para cima para compensar o padding-top extra */
-    margin-top: -15px; 
-    margin-bottom: 5px;
     font-size: 1.2em;
+    margin-bottom: 10px;
+    color: var(--texto-principal);
 }
 
 .card p {
-    color: var(--texto-secundario);
-    margin-bottom: 10px;
-}
-
-.tags {
-    margin-top: 5px;
-    margin-bottom: 10px;
-}
-
-.tags span {
-    display: inline-block;
-    background-color: var(--cor-acento);
-    color: white;
-    padding: 3px 8px;
-    border-radius: 4px;
-    font-size: 0.75em;
-    margin-right: 5px;
-    cursor: pointer;
-    transition: opacity 0.2s;
-}
-.tags span:hover {
-    opacity: 0.8;
-}
-
-.reader-mode-btn {
-    background-color: var(--fundo-sidebar);
-    color: var(--texto-principal);
-    border: 1px solid var(--borda-suave);
-    padding: 8px 12px;
-    border-radius: 6px;
-    margin-top: 10px;
-    cursor: pointer;
-    transition: background-color 0.2s;
     font-size: 0.9em;
-}
-.reader-mode-btn:hover {
-    background-color: var(--borda-suave);
+    color: var(--texto-secundario);
+    margin-bottom: 15px;
+    flex-grow: 1; /* Garante que todos os cards tenham a mesma altura */
 }
 
+/* Botões de Ação no Card */
 .card-actions {
     position: absolute;
-    /* CORREÇÃO: Posiciona os ícones dentro da nova área de padding */
     top: 10px;
     right: 10px;
     display: flex;
     gap: 5px;
-    opacity: 0.5;
-    z-index: 10; /* Garante que os botões fiquem acima do conteúdo */
-    transition: opacity 0.2s;
-}
-.card:hover .card-actions {
-    opacity: 1;
 }
 
 .card-actions button {
-    background: none;
+    background: var(--borda-suave);
     border: none;
+    border-radius: 4px;
+    width: 30px;
+    height: 30px;
     cursor: pointer;
     color: var(--texto-secundario);
-    padding: 5px;
-    font-size: 1em;
-}
-.card-actions .edit-btn:hover {
-    color: var(--cor-acento);
-}
-.card-actions .delete-btn:hover {
-    color: #ef4444; /* Vermelho para exclusão */
-}
-
-
-/* --- Visualização em Grid (Padrão) --- */
-#viewer-container.grid-view {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
-    gap: 20px;
-}
-#viewer-container.grid-view .card h3 {
-    font-size: 1.1em;
-    /* A margem superior já está corrigida na regra .card h3 global */
-    margin-top: -15px; 
-}
-#viewer-container.grid-view .card p {
+    transition: color 0.2s, background-color 0.2s;
     font-size: 0.9em;
 }
 
+.card-actions button:hover {
+    background-color: var(--cor-acento);
+    color: white;
+}
 
-/* --- Visualização em Lista --- */
+.reader-mode-btn {
+    padding: 8px 12px;
+    margin-top: auto; /* Empurra para o final do card */
+    background-color: transparent;
+    border: 1px solid var(--borda-suave);
+    color: var(--texto-principal);
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+.reader-mode-btn:hover {
+    background-color: var(--cor-acento);
+    color: white;
+    border-color: var(--cor-acento);
+}
+
+
+/* Estilos para Tags */
+.tags {
+    margin-bottom: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    min-height: 24px; /* Garante espaço mínimo */
+}
+
+.tags span {
+    background-color: var(--borda-suave);
+    color: var(--texto-principal);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.75em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s, outline 0.2s;
+    white-space: nowrap;
+}
+
+.tags span:hover {
+    background-color: var(--cor-acento);
+    color: white;
+}
+
+/* ------------------------------------------------ */
+/* --- Visualização em Lista (NOVO) --- */
+/* ------------------------------------------------ */
+
 #viewer-container.list-view {
     display: flex;
-    flex-direction: column;
-    gap: 10px;
+    flex-direction: column; /* Lista empilhada */
+    gap: 8px; /* Espaço menor entre os itens */
 }
+
 #viewer-container.list-view .card {
     display: flex;
-    justify-content: space-between;
+    flex-direction: row; /* Layout horizontal */
     align-items: center;
-    /* Na visualização em lista, os botões são position: static, então o padding pode ser menor */
-    padding: 15px 20px;
+    padding: 12px 20px;
+    box-shadow: none; /* Sem sombra para um visual mais limpo */
+    border: 1px solid var(--borda-suave); /* Borda simples */
+    cursor: pointer;
+    transition: background-color 0.2s;
 }
+
+#viewer-container.list-view .card:hover {
+    background-color: var(--fundo-sidebar); /* Leve destaque ao passar o mouse */
+}
+
 #viewer-container.list-view .card h3 {
-    flex-shrink: 0;
-    width: 20%;
-    min-width: 150px;
-    margin: 0;
-}
-#viewer-container.list-view .card p {
-    flex-grow: 1; 
-    margin: 0 20px;
+    flex-grow: 1; /* Título ocupa o espaço */
+    margin-bottom: 0;
+    font-size: 1.1em;
     white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis; 
+    text-overflow: ellipsis;
+    order: 1; /* Ordem do título */
 }
-#viewer-container.list-view .tags {
-    flex-shrink: 0;
+
+#viewer-container.list-view .card p {
+    display: none; /* Esconde a descrição na lista para economizar espaço */
+}
+
+#viewer-container.list-view .card .tags {
     min-width: 150px;
+    max-width: 25%;
+    text-align: left;
+    margin-right: 20px;
+    font-size: 0.85em;
+    display: block; /* Tags em bloco */
+    white-space: normal;
+    order: 2; /* Ordem das tags */
 }
-#viewer-container.list-view .reader-mode-btn {
-    margin: 0;
-    flex-shrink: 0;
+
+#viewer-container.list-view .card .tags span {
+    margin-bottom: 2px;
 }
-#viewer-container.list-view .card-actions {
+
+#viewer-container.list-view .card .card-actions {
+    /* Garante que as ações fiquem no final */
     position: static;
-    opacity: 1;
-    margin-left: 10px;
+    min-width: 70px; 
+    margin-left: 15px;
+    order: 3; /* Ordem das ações */
+}
+
+/* Esconder o botão "Modo Leitura" na visualização em Lista, pois o clique no card já abre o URL */
+#viewer-container.list-view .reader-mode-btn {
+    display: none;
 }
 
 
-/* --- Modal/Overlay Base (Oculta por padrão) --- */
+/* ------------------------------------------------ */
+/* --- Estilos de Modal (Comum para todos os modais) --- */
+/* ------------------------------------------------ */
+
 .hidden {
     display: none !important;
 }
 
-/* Modal de Leitura */
-#reader-modal {
+#reader-modal, #crud-modal, #collection-crud-modal {
     position: fixed;
     top: 0;
     left: 0;
@@ -339,237 +400,97 @@ header {
     z-index: 1000;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start; /* Alinhar ao topo para melhor visualização */
 }
 
-#modal-backdrop {
+#modal-backdrop, #crud-modal-backdrop, #collection-modal-backdrop {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: black;
-    opacity: 0.8;
+    background-color: var(--fundo-backdrop);
+    opacity: 0.85;
 }
 
-#modal-content {
+#modal-content, #crud-modal-content, #collection-modal-content {
     background-color: var(--fundo-principal);
     color: var(--texto-principal);
     position: relative;
     z-index: 1001;
     width: 90%;
     max-width: 800px;
-    height: 90%;
     max-height: 90vh;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    padding: 30px;
+    margin-top: 5vh; /* Distância do topo */
+    overflow-y: auto; /* Permite scroll no conteúdo do modal */
 }
 
-#modal-content header {
-    padding: 15px 25px;
-    border-bottom: 1px solid var(--borda-suave);
+#modal-content header, #crud-modal-content header, #collection-crud-modal-content header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 0;
+    margin-bottom: 20px;
 }
 
-#close-modal-btn {
+#modal-content h2, #crud-modal-content h2, #collection-crud-modal-content h2 {
+    font-size: 1.5em;
+}
+
+#modal-content #close-modal-btn, 
+#crud-modal-content #close-crud-modal-btn,
+#collection-crud-modal-content #close-collection-modal-btn {
     background: none;
     border: none;
-    font-size: 1.2em;
+    font-size: 1.5em;
     cursor: pointer;
-    color: var(--texto-principal);
+    color: var(--texto-secundario);
+    transition: color 0.2s;
 }
-
-#modal-body {
-    padding: 25px;
-    overflow-y: auto;
+#modal-content button:hover, #crud-modal-content button:hover, #collection-crud-modal-content button:hover {
+    color: var(--cor-acento);
 }
-
-/* --- Modal CRUD de Links (CREATE / UPDATE de Link) --- */
-#crud-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 2000; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-#crud-modal-backdrop {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: black;
-    opacity: 0.75;
-}
-
-#crud-modal-content {
-    background-color: var(--fundo-principal);
-    color: var(--texto-principal);
-    position: relative;
-    z-index: 2001;
-    width: 90%;
-    max-width: 500px;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-}
-
-#crud-modal-content header {
-    padding: 0;
-    border-bottom: 1px solid var(--borda-suave);
-    margin-bottom: 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-#close-crud-modal-btn {
-    background: none;
-    border: none;
-    font-size: 1.2em;
-    cursor: pointer;
-    color: var(--texto-principal);
-}
-
-/* Formulário de Link */
-#link-form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-#link-form label {
-    margin-top: 5px;
-    font-weight: bold;
-    font-size: 0.9em;
-}
-#link-form input, #link-form textarea, #link-form select {
-    padding: 10px;
-    border: 1px solid var(--borda-suave);
-    background-color: var(--fundo-card);
-    color: var(--texto-principal);
-    border-radius: 6px;
-    font-size: 1em;
-    resize: vertical;
-}
-#link-form button {
-    margin-top: 15px;
-    padding: 12px;
-    background-color: var(--cor-acento);
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: opacity 0.2s;
-}
-#link-form button:hover {
-    opacity: 0.9;
-}
-
 
 /* ------------------------------------------------ */
-/* --- ESTILOS PARA CRUD DE COLEÇÕES --- */
+/* --- Estilo de Formulários (CRUD e Coleções) --- */
 /* ------------------------------------------------ */
-
-/* Estilo para o botão "Gerenciar Coleções" */
-#manage-collections-btn {
-    padding: 8px 10px;
-    border: 1px solid var(--borda-suave);
-    background-color: var(--fundo-card);
-    color: var(--texto-principal);
-    border-radius: 6px;
-    font-size: 0.9em;
-    cursor: pointer;
-    font-weight: 500;
-    margin-bottom: 15px; 
-    display: block;
-    width: 100%;
-    transition: background-color 0.2s;
-}
-#manage-collections-btn:hover {
-    background-color: var(--borda-suave);
-}
-
-
-/* --- Modal de Gerenciamento de Coleções (C/U/D de Coleção) --- */
-#collection-crud-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 3000; /* Acima dos outros modais */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-#collection-modal-backdrop {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: black;
-    opacity: 0.75;
-}
-
-#collection-modal-content {
-    background-color: var(--fundo-principal);
-    color: var(--texto-principal);
-    position: relative;
-    z-index: 3001;
-    width: 90%;
-    max-width: 400px;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-}
-
-#collection-modal-content header {
-    padding: 0;
-    border-bottom: 1px solid var(--borda-suave);
-    margin-bottom: 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-#close-collection-modal-btn {
-    background: none;
-    border: none;
-    font-size: 1.2em;
-    cursor: pointer;
-    color: var(--texto-principal);
-}
-
-/* Formulário de Coleção */
-#collection-form {
+#link-form, #collection-form {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 15px;
 }
-#collection-form label {
+
+#link-form label, #collection-form label {
+    font-weight: 600;
     margin-top: 5px;
-    font-weight: bold;
-    font-size: 0.9em;
+    font-size: 0.95em;
 }
+
+#link-form input, #link-form textarea, #link-form select,
 #collection-form input {
     padding: 10px;
     border: 1px solid var(--borda-suave);
-    background-color: var(--fundo-card);
+    background-color: var(--fundo-sidebar); /* Usa fundo da sidebar para contraste */
     color: var(--texto-principal);
     border-radius: 6px;
     font-size: 1em;
+    outline: none;
+    transition: border-color 0.2s;
 }
-#collection-form button {
+
+#link-form input:focus, #link-form textarea:focus, #link-form select:focus,
+#collection-form input:focus {
+    border-color: var(--cor-acento);
+}
+
+#link-form textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+#link-form button, #collection-form button {
     margin-top: 10px;
     padding: 12px;
     background-color: var(--cor-acento);
@@ -580,7 +501,7 @@ header {
     font-weight: bold;
     transition: opacity 0.2s;
 }
-#collection-form button:hover {
+#link-form button:hover, #collection-form button:hover {
     opacity: 0.9;
 }
 
@@ -613,12 +534,13 @@ header {
     cursor: pointer;
     margin-left: 10px;
     font-size: 0.9em;
+    transition: color 0.2s;
 }
 .collection-actions .edit-collection-btn:hover {
     color: var(--cor-acento);
 }
 .collection-actions .delete-collection-btn:hover {
-    color: #ef4444;
+    color: #ef4444; /* Vermelho para exclusão */
 }
 .collection-name-display {
     font-weight: 500;
@@ -627,37 +549,111 @@ header {
     color: var(--texto-secundario);
     font-style: italic;
     font-weight: normal;
+    margin-left: 10px;
+    font-size: 0.85em;
 }
 
 /* ------------------------------------------------ */
-/* --- NOVO: Seção de Importação/Exportação na Sidebar --- */
+/* --- RESPONSIVIDADE (Celulares e Tablets Pequenos) --- */
 /* ------------------------------------------------ */
-#data-management {
-    margin-bottom: 20px;
-}
-#data-management h3 {
-    margin-bottom: 10px;
-    font-size: 1em;
-    font-weight: 600;
-    color: var(--texto-principal);
-}
+@media (max-width: 768px) {
+    body {
+        flex-direction: column; /* Empilha sidebar e conteúdo */
+    }
 
-#data-management button {
-    /* Reutiliza o estilo de #manage-collections-btn */
-    padding: 8px 10px;
-    border: 1px solid var(--borda-suave);
-    background-color: var(--fundo-card);
-    color: var(--texto-principal);
-    border-radius: 6px;
-    font-size: 0.9em;
-    cursor: pointer;
-    font-weight: 500;
-    margin-bottom: 8px; /* Espaçamento entre os botões */
-    display: block;
-    width: 100%;
-    transition: background-color 0.2s;
-}
+    /* Sidebar - Simplificada para telas pequenas */
+    #sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid var(--borda-suave);
+        padding: 15px;
+        order: -1; /* Coloca a sidebar acima do conteúdo */
+    }
+    
+    /* Oculta elementos que ocupam muito espaço na sidebar em mobile */
+    #sidebar h2, #data-management h3, #toggle-theme, #manage-collections-btn, #data-management {
+        display: none; 
+    }
+    
+    /* Mostra apenas a lista de coleções para navegação rápida */
+    #collection-list {
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 0;
+        gap: 8px;
+    }
+    
+    #collection-list li {
+        flex-grow: 1;
+        width: auto;
+        margin: 0;
+        min-width: 100px;
+    }
+    
+    #collection-list a {
+        padding: 8px 12px;
+        text-align: center;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 
-#data-management button:hover {
-    background-color: var(--borda-suave);
+    /* Área de Conteúdo */
+    #content-area {
+        padding: 15px;
+    }
+
+    /* Header */
+    header {
+        flex-wrap: wrap; /* Permite que os itens quebrem linha */
+        margin-bottom: 15px;
+    }
+    
+    #search-input {
+        order: 1;
+        width: 100%; 
+        margin-bottom: 10px;
+    }
+
+    #add-link-btn {
+        order: 2;
+        flex-grow: 1;
+        text-align: center;
+        width: calc(50% - 5px);
+        padding: 10px 10px;
+    }
+    
+    #sort-select {
+        order: 3;
+        flex-grow: 1;
+        width: calc(50% - 5px);
+    }
+
+    #toggle-view {
+        order: 4;
+        width: 100%;
+        margin-top: 10px;
+    }
+    
+    /* Visualização em Grid (Apenas uma coluna em mobile) */
+    #viewer-container.grid-view {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    /* Visualização em Lista (Ajusta o layout horizontal) */
+    #viewer-container.list-view .card .tags {
+        display: none; /* Esconde tags em mobile list view */
+    }
+    
+    #viewer-container.list-view .card {
+        padding: 10px 15px;
+    }
+
+    /* Modais */
+    #modal-content, #crud-modal-content, #collection-crud-modal-content {
+        width: 95%;
+        margin-top: 20px;
+        padding: 20px;
+    }
 }
